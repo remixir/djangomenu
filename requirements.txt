@@ -1,0 +1,6 @@
+Django==1.9.7
+django-mptt==0.8.5
+django-mptt-admin==0.3.7
+djangotoolbox==1.8.0
+importlib==1.0.3
+six==1.10.0

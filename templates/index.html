@@ -1,20 +1,48 @@
+{% load mptt_tags %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap/js/bootstrap.js' %}">
 </head>
 <body>
+<div id="navbar">
+    <div id="nav">
+        <div id="menu">
+            {% recursetree nodes %}
+                <li>
+                    <a>{{ node.name }}</a>
+                    {% if node.view_content == True %}
+                        {{ node.content }}
+                    {% endif %}
+                    {% if not node.is_leaf_node %}
+                        <ol class="children">
+                            {{ children }}
+                        </ol>
+                    {% endif %}
+                </li>
+            {% endrecursetree %}
+        </div>
+    </div>
+</div>
+    <div id="content">
+        <div id="left-bar">
+fff
+        </div>
+        <div id="right-bar">
+            {% block about %}
+            {% endblock %}
+        </div>
 
-{% for item in queryset %}
-    {% if item.has_parent %}
-        children:{{ item.parent.name }}<br>{{ item.name }}<br>
-    {% else %}
-        parent:{{ item.name }}<br>
+    </div>
 
-    {% endif %}
-{% endfor %}
+<div id="footer">
+</div>
 
-get_family()
 </body>
 </html>

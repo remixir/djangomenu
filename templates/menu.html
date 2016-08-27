@@ -1,0 +1,16 @@
+
+    {% load mptt_tags %}
+        {% recursetree nodes %}
+            <li>
+                <a>{{ node.name }}</a>
+                {% if node.view_content == True %}
+                    {{ node.content }}
+                {% endif %}
+                {% if not node.is_leaf_node %}
+                    <ol class="children">
+                        {{ children }}
+                    </ol>
+                {% endif %}
+            </li>
+        {% endrecursetree %}
+

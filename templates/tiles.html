@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% load mptt_tags %}
+{% block about %}
+    <div id="tiles">
+        {% recursetree nodes %}
+                {{ children }}
+                {% if node.parent == Null %}
+                    <div id="tile">
+                    <a href="{{ node.get_absolute_url }}">{{ node.name }}</a><br>
+                    </div>
+                    {% if node.view_content == True %}
+                        {{ node.content }}
+                    {% endif %}
+                {% endif %}
+
+        {% endrecursetree %}
+    </div>
+
+{% endblock %}

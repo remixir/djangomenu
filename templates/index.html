@@ -9,40 +9,131 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap/js/bootstrap.js' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="navbar">
-    <div id="nav">
-        <div id="menu">
-            {% recursetree nodes %}
-                <li>
-                    <a>{{ node.name }}</a>
-                    {% if node.view_content == True %}
-                        {{ node.content }}
+<div class="container">
+    <div class="header">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">English Blog</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    {% recursetree menu_nodes %}
+                        {% if node.parent == Null %}
+                            <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" class="btn btn-primary"
+                               data-target="#">
+                                {{ node.name }} <span class="glyphicon glyphicon-menu-down"></span>
+                            </a>
+                            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                        {% endif %}
+
+
+                    {% if not node.is_leaf_node and node.get_level > 0 %}
+                        <li class="dropdown-submenu">
+                    {% endif %}
+                    {% if node.is_leaf_node %}
+                        <li><a href="#">{{ node.name }}</a></li>
+                    {% endif %}
+
+                    {% if not node.parent == Null and not node.is_leaf_node %}
+                        <a href="#">{{ node.name }}</a>
+
                     {% endif %}
                     {% if not node.is_leaf_node %}
-                        <ol class="children">
-                            {{ children }}
-                        </ol>
+                        {% if not node.is_leaf_node and node.get_level > 0 %}
+                            <ul class="dropdown-menu">
+                        {% endif %}
+                    {{ children }}
+                    {% if not node.is_leaf_node and node.get_level > 0 %}
+                        </ul>
                     {% endif %}
-                </li>
-            {% endrecursetree %}
+                    {% endif %}
+                    {% if not node.is_leaf_node and node.get_level > 0 %}
+                        </li>
+                    {% endif %}
+                    {% if node.parent == Null %}
+                        </ul>
+                        </li>
+                    {% endif %}
+                    {% endrecursetree %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-3 leftside">
+                <div class="sidebar">
+                    <nav class="navbar navbar-inverse">
+                        <div class="container-fluid container-fluid-sidebar">
+                            <div class="navbar-header">
+                                <a class="navbar-brand" href="#">Tiles</a>
+                            </div>
+                            <ul class="nav navbar-nav sidebar-nav">
+                                {% recursetree tile_nodes %}
+                                    {% if node.parent == Null %}
+                                        <li class="dropdown">
+                                        <a class="dropdown-toggle dropdown-toggle-sidebar" role="button"
+                                           data-toggle="dropdown"
+                                           class="btn btn-primary"
+                                           data-target="#">
+                                            {{ node.name }}<span class="glyphicon glyphicon-chevron-down"></span>
+                                        </a>
+                                        <ul class="dropdown-menu multi-level dropdown-menu-sidebar" role="menu"
+                                            aria-labelledby="dropdownMenu">
+                                    {% endif %}
+
+
+                                {% if not node.is_leaf_node and node.get_level > 0 %}
+                                    <li class="dropdown-submenu ">
+                                {% endif %}
+                                {% if node.is_leaf_node %}
+                                    <li><a href="#">{{ node.name }}</a></li>
+                                {% endif %}
+
+                                {% if not node.parent == Null and not node.is_leaf_node %}
+                                    <a class="dropdown-toggle dropdown-toggle-sidebar" role="button"
+                                       data-toggle="dropdown-submenu"
+                                       class="btn btn-primary"
+                                       data-target="#">{{ node.name }}</a>
+
+                                {% endif %}
+                                {% if not node.is_leaf_node %}
+                                    {% if not node.is_leaf_node and node.get_level > 0 %}
+                                        <ul class="dropdown-menu dropdown-menu-sidebar">
+                                    {% endif %}
+                                {{ children }}
+                                {% if not node.is_leaf_node and node.get_level > 0 %}
+                                    </ul>
+                                {% endif %}
+                                {% endif %}
+                                {% if not node.is_leaf_node and node.get_level > 0 %}
+                                    </li>
+                                {% endif %}
+                                {% if node.parent == Null %}
+                                    </ul>
+                                    </li>
+                                {% endif %}
+                                {% endrecursetree %}
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                {% block sidebar %}{% endblock %}
+            </div>
+            <div class="col-sm-9 rightside">
+                {% block about %}{% endblock %}
+            </div>
         </div>
     </div>
 </div>
-    <div id="content">
-        <div id="left-bar">
-fff
-        </div>
-        <div id="right-bar">
-            {% block about %}
-            {% endblock %}
-        </div>
-
-    </div>
-
-<div id="footer">
+<div class="footer navbar-fixed-bottom">
+    <a>Copyright @ 2016 Design by Emil Doliński</a>
 </div>
-
+<script type="text/javascript" src="{% static 'js/collapse.js' %}"></script>
 </body>
 </html>

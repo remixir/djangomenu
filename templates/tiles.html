@@ -1,11 +1,10 @@
 {% extends "index.html" %}
 {% load mptt_tags %}
 {% block about %}
-    <div id="tiles">
-        {% recursetree nodes %}
+        {% recursetree tile_nodes %}
                 {{ children }}
                 {% if node.parent == Null %}
-                    <div id="tile">
+                    <div class="tile col-md-3">
                     <a href="{{ node.get_absolute_url }}">{{ node.name }}</a><br>
                     </div>
                     {% if node.view_content == True %}
@@ -14,6 +13,4 @@
                 {% endif %}
 
         {% endrecursetree %}
-    </div>
-
 {% endblock %}

@@ -9,12 +9,14 @@ class Tiles(MPTTModel):
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
     view_content = models.BooleanField(default=False)
 
+
     def __str__(self):
         return self.name
 
     @permalink
     def get_absolute_url(self):
         return ("tile-detail", (self.pk,))
+
 
 
 class Menu(MPTTModel):

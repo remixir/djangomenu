@@ -24,6 +24,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# DJANGO_WYSIWYG_FLAVOR = "tinymce_advanced"
 
 # Application definition
 
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'menu',
     'django_mptt_admin',
     'mptt',
+    'django_wysiwyg',
+    'tinymce',
 
 ]
 

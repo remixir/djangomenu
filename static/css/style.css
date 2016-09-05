@@ -2,12 +2,12 @@
 .tile {
     /*border: black 1px solid;*/
     margin-bottom: 20px;
-    height: 12em;
+    height: 13em;
     padding-right: 0px !important;
 }
 
 .pad-tile {
-    display:block;
+    display: block;
     height: 12em;
 
 }
@@ -35,21 +35,42 @@
     display: block;
     width: 100%;
     height: 100%;
+}
 
+.tile_detail {
+    background-color: #2aaad1;
+    border: 10px solid #222222 !important;
+    min-height: 100%;
+    height: 555px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.col-md-12 {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.tile_detail > a {
+    color: #0f0f0f;
+    text-decoration: none;
 }
 
 /*!* ------------------------MENU BOOTSTRAP------------------------ *!*/
 
-html{
-  height:100%;
-}
-body{
-  background-color: #c8c8c8;
-  min-height:100%;
-  position:relative;
+html {
+    height: 100%;
 }
 
-span{
+body {
+    background-color: #c8c8c8;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+span {
     color: #2aabd2;
 }
 
@@ -103,85 +124,85 @@ span{
     text-align: center;
 }
 
-
-
 /*!* ------------------------SIDEBAR------------------------ *!*/
 
+.sidebar-nav .open .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
 
-    .sidebar-nav .open .dropdown-menu{
-        position: static;
-        float: none;
-        width: auto;
-        margin-top: 0;
-        background-color: transparent;
-        border: 0;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-    }
+.sidebar .navbar-nav .open .dropdown-menu > li > a,
+.sidebar .navbar-nav .open .dropdown-menu .dropdown-header {
+    padding: 5px 15px 5px 25px;
+}
 
-    .sidebar .navbar-nav .open .dropdown-menu > li > a,
-    .sidebar .navbar-nav .open .dropdown-menu .dropdown-header {
-        padding: 5px 15px 5px 25px;
-    }
+.sidebar .navbar-nav .open .dropdown-menu > li > a {
+    line-height: 20px;
+}
 
-    .sidebar .navbar-nav .open .dropdown-menu > li > a {
-        line-height: 20px;
-    }
+.sidebar .navbar-nav .open .dropdown-menu > li > a:hover,
+.sidebar .navbar-nav .open .dropdown-menu > li > a:focus {
+    background-image: none;
+}
 
-    .sidebar .navbar-nav .open .dropdown-menu > li > a:hover,
-    .sidebar .navbar-nav .open .dropdown-menu > li > a:focus {
-        background-image: none;
-    }
+.sidebar .navbar-nav {
+    float: left;
+    margin: 0;
+}
 
+.sidebar .navbar-nav > li {
+    float: left;
+}
 
+.sidebar .navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
 
-    .sidebar .navbar-nav {
-        float: left;
-        margin: 0;
-    }
+/*!*!* ------------------------left side------------------------ *!*!*/
 
-    .sidebar .navbar-nav > li {
-        float: left;
-    }
+.container-fluid-sidebar {
+    height: 555px;
 
-     .sidebar .navbar-nav > li > a {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
+}
 
-     .container-fluid-sidebar {
+.dropdown-toggle-sidebar {
+    float: none;
+    width: 230px;
+}
 
-     }
+.dropdown-menu-sidebar > li > a {
+    color: white !important;
+}
 
-     .dropdown-toggle-sidebar {
-         float: none;
-        width: 230px;
-     }
+.dropdown-menu-sidebar > li {
+    width: 230px;
+    color: white !important;
+}
 
-     .dropdown-menu-sidebar > li > a {
-         color: white !important;
-     }
-
-     .dropdown-menu-sidebar > li{
-         width: 230px;
-         color: white !important;
-     }
-
-     .dropdown-menu-sidebar > li > a:hover{
-         color: black !important;
-     }
+.dropdown-menu-sidebar > li > a:hover {
+    color: black !important;
+}
 
 /*!*!* ------------------------FOOTER------------------------ *!*!*/
 
-
 .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     height: 60px;
     background-color: #3c3c3c;
     color: white;
 
 }
 
-.footer a{
+.footer a {
     line-height: 60px;
-        padding-left: 100px;
+    padding-left: 100px;
 }

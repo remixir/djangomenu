@@ -3,7 +3,6 @@ from django.forms import ModelForm
 from models import Tiles
 
 
-
 class AdminMenuForm(ModelForm):
     class Meta:
         model = Tiles

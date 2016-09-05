@@ -9,7 +9,7 @@ from forms import AdminMenuForm
 
 class MenuAdmin(DjangoMpttAdmin):
     form = AdminMenuForm
-    # change_form_template = 'change_form.html'
+
     def has_change_permission(self, request, obj=None):
         return request.user.is_superuser
 

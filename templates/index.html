@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>English Blog</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap/js/bootstrap.js' %}">
@@ -18,7 +18,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">English Blog</a>
+                    <a class="navbar-brand" href="http://127.0.0.1:8000/root_tiles/">English Blog</a>
                 </div>
                 <ul class="nav navbar-nav">
                     {% recursetree menu_nodes %}
@@ -70,8 +70,8 @@
                 <div class="sidebar">
                     <nav class="navbar navbar-inverse">
                         <div class="container-fluid container-fluid-sidebar">
-                            <div class="navbar-header">
-                                <a class="navbar-brand" href="#">Tiles</a>
+                            <div class="navbar-header ">
+                                <a style="padding-left: 114px" class="navbar-brand" href="#">Tiles</a>
                             </div>
                             <ul class="nav navbar-nav sidebar-nav">
                                 {% recursetree tile_nodes %}
@@ -92,14 +92,14 @@
                                     <li class="dropdown-submenu ">
                                 {% endif %}
                                 {% if node.is_leaf_node %}
-                                    <li><a href="#">{{ node.name }}</a></li>
+                                    <li><a href="{{ node.get_absolute_url }}">{{ node.name }}</a></li>
                                 {% endif %}
 
                                 {% if not node.parent == Null and not node.is_leaf_node %}
                                     <a class="dropdown-toggle dropdown-toggle-sidebar" role="button"
                                        data-toggle="dropdown-submenu"
                                        class="btn btn-primary"
-                                       data-target="#">{{ node.name }}</a>
+                                       data-target="#" href="{{ node.get_absolute_url }}">{{ node.name }}</a>
 
                                 {% endif %}
                                 {% if not node.is_leaf_node %}

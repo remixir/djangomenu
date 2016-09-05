@@ -17,11 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from menu.views import TilesView, TileDetailView, IndexView
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', IndexView.as_view()),
     url(r'^root_tiles/$', TilesView.as_view()),
     url(r'^tile_detail/(?P<pk>\w+)/$', TileDetailView.as_view(), name="tile-detail"),
-    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls'))
 ]

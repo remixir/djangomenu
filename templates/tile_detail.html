@@ -2,18 +2,18 @@
 {% block about %}
     {% load mptt_tags %}
     <div class="tiles">
-        {% recursetree nodes %}
-
-            {{ children }}
-            {% if node.parent.id == objekt.id %}
-                <div class="tile col-md-3">
-                        <a href="{{ node.get_absolute_url }}">{{ node.name }}</a><br>
-                </div>
-                {% if node.view_content == True %}
-                    {{ node.content }}
-                {% endif %}
-            {% endif %}
-        {% endrecursetree %}
+    {% recursetree tile_nodes %}
+        {{ children }}
+        {% if node.parent.id == objekt.id %}
+            <div class="tile col-md-3">
+                <a href="{{ node.get_absolute_url }}">{{ node.name }}</a><br>
+            </div>
+        {% elif objekt.is_leaf_node and objekt.pk == node.pk %}
+            <div class="col-md-12">
+                <div class="wrapper">{{ objekt.ckeditor_content|safe }}</div>
+            </div>
+        {% endif %}
+    {% endrecursetree %}
 
 
 {% endblock %}

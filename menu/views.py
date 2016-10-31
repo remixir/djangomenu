@@ -16,6 +16,19 @@ class IndexView(ListView):
         context['tile_nodes'] = Tiles.objects.all()
         return context
 
+class MenuView(ListView):
+    context_object_name = "menu_nodes"
+    template_name = "menu.html"
+    model = Menu.objects.all()
+
+    def get_queryset(self):
+        return Menu.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['tile_nodes'] = Tiles.objects.all()
+        return context
+
 
 class TilesView(ListView):
     context_object_name = "menu_nodes"

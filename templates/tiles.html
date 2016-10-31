@@ -3,7 +3,7 @@
 {% block about %}
         {% recursetree tile_nodes %}
                 {{ children }}
-                {% if node.parent == Null %}
+                {% if node.get_level > 1 %}
                     <div class="tile col-md-3">
                     <a href="{{ node.get_absolute_url }}">{{ node.name }}</a><br>
                     </div>
@@ -11,6 +11,5 @@
                         {{ node.content }}
                     {% endif %}
                 {% endif %}
-
         {% endrecursetree %}
 {% endblock %}

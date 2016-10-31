@@ -6,7 +6,7 @@
         {{ children }}
         {% if node.parent.id == objekt.id %}
             <div class="tile col-md-3">
-                <a href="{{ node.get_absolute_url }}">{{ node.name }}</a><br>
+                <a href="{{ node.get_absolute_url }}">{{ node.name }}{{ node.get_level }}</a><br>
             </div>
         {% elif objekt.is_leaf_node and objekt.pk == node.pk %}
             <div class="col-md-12">
@@ -14,6 +14,4 @@
             </div>
         {% endif %}
     {% endrecursetree %}
-
-
 {% endblock %}

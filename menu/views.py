@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
-from models import Tiles, Menu
+from models import Tiles, Menu, PDF
 
 
 class IndexView(ListView):
@@ -57,6 +57,7 @@ class TileDetailView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TileDetailView, self).get_context_data(**kwargs)
+        context['pdf_list'] = PDF.objects.filter()
         context.update({
             'objekt': Tiles.objects.get(id=self.kwargs.get("pk")),
             'tile_nodes': Tiles.objects.all()

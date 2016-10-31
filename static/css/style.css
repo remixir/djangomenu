@@ -4,6 +4,7 @@
     margin-bottom: 20px;
     height: 13em;
     padding-right: 0px !important;
+    background: url('/static/img/tile1.png') no-repeat;
 }
 
 .pad-tile {
@@ -15,7 +16,6 @@
 .tile a {
     font-size: 30px;
     color: #0f0f0f;
-    background-color: #2aabd2;
     margin-bottom: 20px;
     text-decoration: none;
     display: block;
@@ -23,13 +23,10 @@
     height: 100%;
     text-align: center;
     padding-top: 2em;
-    box-shadow: 5px 5px 5px #888888;
 }
 
 .tile a:hover {
     color: #2aaad1;
-    box-shadow: 0px 0px 0px #888888;
-    background-color: #484447;
     margin-bottom: 20px;
     text-decoration: none;
     display: block;
@@ -205,4 +202,61 @@ span {
 .footer a {
     line-height: 60px;
     padding-left: 100px;
+}
+
+/* Other */
+
+.navbar-inverse {
+    background-color: white !important;
+    border: none !important;
+}
+
+body {
+    background-color: #f9f6ef !important;
+}
+
+a:hover {
+    color: black !important;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: silver !important;
+    color: black;
+}
+
+.dropdown-menu-sidebar > li > a {
+    color: black !important;
+}
+
+.logo {
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    background: url('/static/img/logo1.png') no-repeat
+}
+
+.navbar-header-blog {
+    background: url('/static/img/sidebar.png') no-repeat;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 48px;
+}
+
+.navbar-blog {
+    background: url('/static/img/menu.png') no-repeat
+}
+
+.navbar.navbar-inverse.navbar-blog2 {
+    border: 1px solid #e3e0d9 !important;
+    border-top: 0!important;
+}
+
+.navbar.navbar-inverse.navbar-blog {
+    background-color: transparent !important;
+
+}
+
+.navbar-blog .navbar-nav {
+    margin-left: 15px !important;
 }

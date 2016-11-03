@@ -1,4 +1,5 @@
 {% extends "index.html" %}
+{% load static %}
 {% block about %}
     {% load mptt_tags %}
     <div class="tiles">
@@ -12,6 +13,20 @@
             <div class="col-md-12">
                 <div class="wrapper">{{ objekt.ckeditor_content|safe }}</div>
             </div>
+
         {% endif %}
     {% endrecursetree %}
+{#            {% for pdf2 in pdf_list %}#}
+{#                {% for pdf in tile_nodes %}#}
+{#                    {% if pdf.pdf_files.name == pdf2.name %}#}
+{#                        <div style="text-align: center; float: left; word-wrap:break-word; margin-left: 10px; margin-right: 10px;">#}
+{#                            <a href="{{ pdf2.file.url }}"><img src="{% static 'img/pdf_icon.png' %}" height="55"#}
+{#                                                               width="55"><br>{{ pdf2.name }}</a>#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{#            {% endfor %}#}
+    {% for pdf in tile_nodes %}
+        {{ pdf.pdf_files.name }}
+                {% endfor %}
 {% endblock %}

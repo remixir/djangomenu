@@ -232,7 +232,7 @@ a:hover {
     width: 1000px;
     height: 500px;
     margin: 0 auto;
-    background: url('/static/img/logo1.png') no-repeat
+    background: url('/static/img/logo1.png') no-repeat;
 }
 
 .navbar-header-blog {
@@ -244,12 +244,12 @@ a:hover {
 }
 
 .navbar-blog {
-    background: url('/static/img/menu.png') no-repeat
+    background: url('/static/img/menu.png') no-repeat;
 }
 
 .navbar.navbar-inverse.navbar-blog2 {
     border: 1px solid #e3e0d9 !important;
-    border-top: 0!important;
+    border-top: 0 !important;
 }
 
 .navbar.navbar-inverse.navbar-blog {

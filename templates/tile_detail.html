@@ -1,5 +1,4 @@
 {% extends "index.html" %}
-{% load static %}
 {% block about %}
     {% load mptt_tags %}
     <div class="tiles">
@@ -7,26 +6,70 @@
         {{ children }}
         {% if node.parent.id == objekt.id %}
             <div class="tile col-md-3">
-                <a href="{{ node.get_absolute_url }}">{{ node.name }}{{ node.get_level }}</a><br>
+                <a href="{{ node.get_absolute_url }}">{{ node.name }}</a><br>
             </div>
         {% elif objekt.is_leaf_node and objekt.pk == node.pk %}
             <div class="col-md-12">
                 <div class="wrapper">{{ objekt.ckeditor_content|safe }}</div>
             </div>
 
+            <!-- Newly added block -->
+            <div id="pdf_blackboard"></div>
+
+            {% for pdf in objekt.pdf_files.all %}
+                <script>
+                    PDFJS.getDocument("/static/{{pdf.file_path}}").then(function (pdf) {
+                        // Using promise to fetch the page
+                        pdf.getPage(1).then(function (page) //Only grab first page
+                        {
+                            var scale = 1; // MODIFY THIS to change thumbnail size
+                            var viewport = page.getViewport(scale);
+
+                            //
+                            // Prepare canvas using PDF page dimensions
+                            //
+                            var pdfBlackboard = document.getElementById("pdf_blackboard");
+
+                            var canvasThumbnail = document.createElement("div");
+                            canvasThumbnail.className += "col-md-3 col-sm-4 col-xs-12";
+
+                            canvasCaption = document.createElement("p");
+                            canvasCaption.innerHTML += "<strong>{{pdf.name}}</strong>";
+
+                            var canvasWrapper = document.createElement('a');
+                            canvasWrapper.href += "/static/viewer.html?file={{pdf.file_path}}";
+
+                            var canvas = document.createElement('canvas');
+                            canvas.className += "thumbnail";
+                            canvas.style.height = "230px";
+                            canvas.style.width = "150px";
+                            canvas.style.marginBottom = "5px";
+                            // canvas.innerHTML += "<div class=\"caption\"><h5>{{pdf.name}}</h5>";
+
+                            var context = canvas.getContext('2d');
+                            canvas.height = viewport.height;
+                            canvas.width = viewport.width;
+
+                            //
+                            // Render PDF page into canvas context
+                            //
+                            var renderContext = {
+                                canvasContext: context,
+                                viewport: viewport
+                            };
+                            page.render(renderContext);
+
+                            canvasWrapper.appendChild(canvas);
+                            canvasThumbnail.appendChild(canvasWrapper);
+                            canvasThumbnail.appendChild(canvasCaption);
+                            pdfBlackboard.appendChild(canvasThumbnail);
+                        });
+                    });
+                </script>
+            {% endfor %}
+
         {% endif %}
     {% endrecursetree %}
-{#            {% for pdf2 in pdf_list %}#}
-{#                {% for pdf in tile_nodes %}#}
-{#                    {% if pdf.pdf_files.name == pdf2.name %}#}
-{#                        <div style="text-align: center; float: left; word-wrap:break-word; margin-left: 10px; margin-right: 10px;">#}
-{#                            <a href="{{ pdf2.file.url }}"><img src="{% static 'img/pdf_icon.png' %}" height="55"#}
-{#                                                               width="55"><br>{{ pdf2.name }}</a>#}
-{#                        </div>#}
-{#                    {% endif %}#}
-{#                {% endfor %}#}
-{#            {% endfor %}#}
-    {% for pdf in tile_nodes %}
-        {{ pdf.pdf_files.name }}
-                {% endfor %}
 {% endblock %}
+
+<!-- <canvas id="the-canvas" style="border:1px solid black;"/> -->

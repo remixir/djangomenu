@@ -1,18 +1,15 @@
-{% extends "index.html" %}
-{% block menu %}
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="http://127.0.0.1:8000/root_tiles/">English Blog</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    {% recursetree tile_nodes %}
-                        {% if node.parent == Null %}
-                            <li class="dropdown">
-                            <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
-                        {% endif %}
-                    {% endrecursetree %}
-                </ul>
-            </div>
-{% endblock %}
+{% load mptt_tags %}
+{% recursetree nodes %}
+    <li>
+        <a>{{ node.name }}</a>
+        {% if node.view_content == True %}
+            {{ node.content }}
+        {% endif %}
+        {% if not node.is_leaf_node %}
+            <ol class="children">
+                {{ children }}
+            </ol>
+        {% endif %}
+    </li>
+{% endrecursetree %}
 

@@ -37,7 +37,7 @@
                             canvasCaption.innerHTML += "<strong>{{pdf.name}}</strong>";
 
                             var canvasWrapper = document.createElement('a');
-                            canvasWrapper.href += "/static/viewer.html?file={{pdf.file_path}}";
+                            canvasWrapper.href += "/static/{{pdf.file_path}}";
 
                             var canvas = document.createElement('canvas');
                             canvas.className += "thumbnail";

@@ -1,10 +1,12 @@
-
+body {
+    font-size: 13px!important;
+}
 .tile {
     /*border: black 1px solid;*/
-    margin-bottom: 20px;
     height: 13em;
     padding-right: 0px !important;
     background: url('/static/img/tile1.png') no-repeat;
+    background-size: 85%;
 }
 
 .pad-tile {
@@ -23,15 +25,6 @@
     height: 100%;
     text-align: center;
     padding-top: 2em;
-}
-
-.tile a:hover {
-    color: #2aaad1;
-    margin-bottom: 20px;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    height: 100%;
 }
 
 .tile_detail {
@@ -229,8 +222,8 @@ a:hover {
 }
 
 .logo {
-    width: 1000px;
-    height: 500px;
+    width: 770px;
+    height: 390px;
     margin: 0 auto;
     background: url('/static/img/logo1.png') no-repeat;
 }
@@ -259,4 +252,27 @@ a:hover {
 
 .navbar-blog .navbar-nav {
     margin-left: 15px !important;
+}
+
+.tile a {
+   color: black;
+   font-family: caption;
+   font-size: 16px;
+   font-style: italic;
+   width: 77%;
+   height: 75%;
+}
+
+.tile a:hover {
+    text-decoration: none;
+    color: #737373 !important;
+}
+
+.glyphicon {
+    font-size: 12px;
+    color: #997639;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #677895!important;
 }

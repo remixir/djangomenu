@@ -358,3 +358,11 @@ a:hover {
 .col-sm-3 {
     width: 292px !important;
 }
+
+.header a {
+    font-style: italic;
+}
+
+.dropdown-menu li a {
+    color: gray!important;
+}

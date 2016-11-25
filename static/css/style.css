@@ -241,10 +241,11 @@ a:hover {
 }
 
 .logo {
-    width: 770px;
-    height: 390px;
+    width: 817px;
+    height: 370px;
     margin: 0 auto;
     background: url('/static/img/logo1.png') no-repeat;
+    background-size: 90%;
 }
 
 .navbar-header-blog {
@@ -349,8 +350,7 @@ a:hover {
 .blog-footer {
     width: 1170px;
     height: 35px;
-    border: 1px solid #d0c4b7;
-    background: #faf8f3;
+    background: #fcfcfc;
     margin: 0 auto;
     margin-top: 25px;
 }
@@ -364,5 +364,5 @@ a:hover {
 }
 
 .dropdown-menu li a {
-    color: gray!important;
+    color: gray !important;
 }

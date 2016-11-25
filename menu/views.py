@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
-from models import Tiles, Menu, PDF
+from models import Tiles, Menu, PDF, HomePage
 
 
 class IndexView(ListView):
@@ -14,6 +14,7 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['tile_nodes'] = Tiles.objects.all()
+        context['homepage'] = HomePage.objects.all()
         return context
 
 

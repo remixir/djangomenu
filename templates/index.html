@@ -16,6 +16,17 @@
 
 </head>
 <body>
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div class="container">
     <div class="logo">
 
@@ -91,7 +102,9 @@
                                     <a class="dropdown-toggle dropdown-toggle-sidebar" role="button"
                                        data-toggle="dropdown-submenu"
                                        class="btn btn-primary"
-                                       data-target="#" href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+                                       data-target="#" href="{{ node.get_absolute_url }}"><span
+                                            class="glyphicon sub-glyphicon glyphicon-menu-down"></span>{{ node.name }}
+                                    </a>
 
                                 {% endif %}
                                 {% if not node.is_leaf_node %}
@@ -114,13 +127,55 @@
                             </ul>
                         </div>
                     </nav>
+                    <div class="informations">
+                        <ul class="ul-informations">
+                            <li>
+                                <div class="fb-page" data-href="https://www.facebook.com/We-The-People-856954941009784/"
+                                     data-width="250" data-small-header="true" data-adapt-container-width="false"
+                                     data-hide-cover="true" data-show-facepile="false">
+                                    <blockquote cite="https://www.facebook.com/We-The-People-856954941009784/"
+                                                class="fb-xfbml-parse-ignore"><a
+                                            href="https://www.facebook.com/We-The-People-856954941009784/">We The
+                                        People.</a></blockquote>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="fb-page"
+                                     data-href="https://www.facebook.com/TheUnitedKingdomOfGreatBritainNorthernIreland/"
+                                     data-width="250" data-small-header="true" data-adapt-container-width="false"
+                                     data-hide-cover="true" data-show-facepile="false">
+                                    <blockquote
+                                            cite="https://www.facebook.com/TheUnitedKingdomOfGreatBritainNorthernIreland/"
+                                            class="fb-xfbml-parse-ignore"><a
+                                            href="https://www.facebook.com/TheUnitedKingdomOfGreatBritainNorthernIreland/">The
+                                        United Kingdom of Great Britain &amp; Northern Ireland</a></blockquote>
+                                </div>
+                            </li>
+                            <li>
+                                <a>jaack.bb@gmail.com</a>
+                            </li>
+                            <li><a>tel: 604 520 772</a></li>
+                        </ul>
+                    </div>
                 </div>
-                {% block sidebar %}{% endblock %}
+
             </div>
             <div class="col-sm-9 rightside">
-                {% block about %}{% endblock %}
+
+                {% block about %}
+
+                    {% for elem in homepage %}
+                        {{ elem.title }}
+                       <p> {{ elem.ckeditor_content|safe }}</p>
+                    {% endfor %}
+
+                {% endblock %}
+
             </div>
         </div>
+    </div>
+    <div class="blog-footer">
+
     </div>
 </div>
 

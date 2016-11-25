@@ -3,10 +3,14 @@ from mptt.models import TreeForeignKey, MPTTModel, raise_if_unsaved
 from django.db.models import permalink
 from ckeditor.fields import RichTextField
 
-
+class HomePage(models.Model):
+    title = models.CharField(max_length=50)
+    ckeditor_content = RichTextField(null=True, blank=True)
+    def __str__(self):
+        return self.title
 
 class Tiles(MPTTModel):
-    name = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(max_length=40, blank=True, null=True)
     ckeditor_content = RichTextField(null=True, blank=True)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
     view_content = models.BooleanField(default=False)

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from django_mptt_admin.admin import DjangoMpttAdmin
 
-from .models import Menu, Tiles, PDF
+from .models import Menu, Tiles, PDF, HomePage
 
 from forms import AdminMenuForm
 
@@ -21,3 +21,4 @@ class MenuAdmin(DjangoMpttAdmin):
 
 admin.site.register(Tiles, MenuAdmin)
 admin.site.register(PDF)
+admin.site.register(HomePage)

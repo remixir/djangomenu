@@ -101,8 +101,11 @@ span {
 
 .dropdown-menu {
     font-size: 13px !important;
-    list-style-type: circle !important;
 
+}
+
+.dropdown-menu > li > a {
+    color: gray !important;
 }
 
 .dropdown-submenu > a:after {

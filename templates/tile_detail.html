@@ -16,57 +16,147 @@
             <!-- Newly added block -->
             <div id="pdf_blackboard"></div>
 
-            {% for pdf in objekt.pdf_files.all %}
+
+
                 <script>
-                    PDFJS.getDocument("/static/{{pdf.file_path}}").then(function (pdf) {
-                        // Using promise to fetch the page
-                        pdf.getPage(1).then(function (page) //Only grab first page
-                        {
-                            var scale = 1; // MODIFY THIS to change thumbnail size
-                            var viewport = page.getViewport(scale);
+                    var list_a = [];
 
-                            //
-                            // Prepare canvas using PDF page dimensions
-                            //
-                            var pdfBlackboard = document.getElementById("pdf_blackboard");
-
-                            var canvasThumbnail = document.createElement("div");
-                            canvasThumbnail.className += "col-md-3 col-sm-4 col-xs-12";
-
-                            canvasCaption = document.createElement("p");
-                            canvasCaption.innerHTML += "<strong>{{pdf.name}}</strong>";
-
-                            var canvasWrapper = document.createElement('a');
-                            canvasWrapper.href += "/static/{{pdf.file_path}}";
-
-                            var canvas = document.createElement('canvas');
-                            canvas.className += "thumbnail";
-                            canvas.style.height = "230px";
-                            canvas.style.width = "150px";
-                            canvas.style.marginBottom = "5px";
-                            // canvas.innerHTML += "<div class=\"caption\"><h5>{{pdf.name}}</h5>";
-
-                            var context = canvas.getContext('2d');
-                            canvas.height = viewport.height;
-                            canvas.width = viewport.width;
-
-                            //
-                            // Render PDF page into canvas context
-                            //
-                            var renderContext = {
-                                canvasContext: context,
-                                viewport: viewport
-                            };
-                            page.render(renderContext);
-
-                            canvasWrapper.appendChild(canvas);
-                            canvasThumbnail.appendChild(canvasWrapper);
-                            canvasThumbnail.appendChild(canvasCaption);
-                            pdfBlackboard.appendChild(canvasThumbnail);
+                    {% for pdf in pdf_list %}
+                        list_a.push({
+                            "filename": "/static/{{ pdf.file_path }}",
+                            "title": "{{ pdf.name }}"
                         });
-                    });
+                    {% endfor %}
+
+{#                    PDFJS.getDocument("/static/{{pdf.file_path}}").then(function (pdf) {#}
+{#                        // Using promise to fetch the page#}
+{#                        pdf.getPage(1).then(function (page) //Only grab first page#}
+{#                        {#}
+{#                            var scale = 1; // MODIFY THIS to change thumbnail size#}
+{#                            var viewport = page.getViewport(scale);#}
+{##}
+{#                            //#}
+{#                            // Prepare canvas using PDF page dimensions#}
+{#                            //#}
+{#                            var pdfBlackboard = document.getElementById("pdf_blackboard");#}
+{##}
+{#                            var canvasThumbnail = document.createElement("div");#}
+{#                            canvasThumbnail.className += "col-md-3 col-sm-4 col-xs-12";#}
+{##}
+{#                            canvasCaption = document.createElement("p");#}
+{#                            canvasCaption.innerHTML += "<strong>{{pdf.name}}</strong>";#}
+{##}
+{#                            var canvasWrapper = document.createElement('a');#}
+{#                            canvasWrapper.href += "/static/{{pdf.file_path}}";#}
+{##}
+{#                            var canvas = document.createElement('canvas');#}
+{#                            canvas.className += "thumbnail";#}
+{#                            canvas.style.height = "230px";#}
+{#                            canvas.style.width = "150px";#}
+{#                            canvas.style.marginBottom = "5px";#}
+{#                            // canvas.innerHTML += "<div class=\"caption\"><h5>{{pdf.name}}</h5>";#}
+{##}
+{#                            var context = canvas.getContext('2d');#}
+{#                            canvas.height = viewport.height;#}
+{#                            canvas.width = viewport.width;#}
+{##}
+{#                            //#}
+{#                            // Render PDF page into canvas context#}
+{#                            //#}
+{#                            var renderContext = {#}
+{#                                canvasContext: context,#}
+{#                                viewport: viewport#}
+{#                            };#}
+{#                            page.render(renderContext).promise.then(function(){#}
+{#                                console.log("ABC");#}
+{#                            });#}
+{##}
+{#                            canvasWrapper.appendChild(canvas);#}
+{#                            canvasThumbnail.appendChild(canvasWrapper);#}
+{#                            canvasThumbnail.appendChild(canvasCaption);#}
+{#                            pdfBlackboard.appendChild(canvasThumbnail);#}
+{#                        });#}
+{#                    });#}
                 </script>
-            {% endfor %}
+
+            <script>
+                    var page_indicate = 1;
+
+                    var x = 0;
+
+                    var load_pdf = function(pdf_filename, pdf_title, callback){
+                        PDFJS.getDocument(pdf_filename).then(function (pdf) {
+                            // Using promise to fetch the page
+                            pdf.getPage(page_indicate).then(function (page) //Only grab first page
+                            {
+                                var scale = 1; // MODIFY THIS to change thumbnail size
+                                var viewport = page.getViewport(scale);
+
+                                //
+                                // Prepare canvas using PDF page dimensions
+                                //
+                                var pdfBlackboard = document.getElementById("pdf_blackboard");
+
+                                var canvasThumbnail = document.createElement("div");
+                                canvasThumbnail.className += "col-md-3 col-sm-4 col-xs-12";
+                                console.log(pdf_title);
+                                canvasCaption = document.createElement("p");
+                                canvasCaption.innerHTML += "<strong>"+pdf_title+"</strong>";
+
+                                var canvasWrapper = document.createElement('a');
+                                canvasWrapper.href += pdf_filename;
+
+                                var canvas = document.createElement('canvas');
+                                canvas.className += "thumbnail";
+                                canvas.style.height = "230px";
+                                canvas.style.width = "150px";
+                                canvas.style.marginBottom = "5px";
+                                // canvas.innerHTML += "<div class=\"caption\"><h5>{{pdf.name}}</h5>";
+
+                                var context = canvas.getContext('2d');
+                                canvas.height = viewport.height;
+                                canvas.width = viewport.width;
+
+                                //
+                                // Render PDF page into canvas context
+                                //
+                                var renderContext = {
+                                    canvasContext: context,
+                                    viewport: viewport
+                                };
+                                console.log("abc1");
+                                page.render(renderContext).promise.then(function(){
+                                    // Loading pdf has been finished
+
+                                    callback();
+                                    console.log("abc1");
+                                });
+
+                                canvasWrapper.appendChild(canvas);
+                                canvasThumbnail.appendChild(canvasWrapper);
+                                canvasThumbnail.appendChild(canvasCaption);
+                                pdfBlackboard.appendChild(canvasThumbnail);
+                            });
+                        });
+                    };
+
+                    var loopArray = function(pdf_array){
+                        load_pdf(pdf_array[x].filename, pdf_array[x].title, function(){
+                            console.log("abc1");
+                            // Set x to next pdf indicator
+                            x++;
+
+                            // If there are anymore items within array, continue loop
+                            if(x < pdf_array.length){
+                                loopArray(pdf_array);
+                            }
+                        });
+                    };
+
+                    loopArray(list_a);
+
+
+            </script>
 
         {% endif %}
     {% endrecursetree %}

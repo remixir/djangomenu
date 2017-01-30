@@ -45,9 +45,13 @@ class TileDetailView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TileDetailView, self).get_context_data(**kwargs)
-        context['pdf_list'] = PDF.objects.filter()
+
+        # Apply any filter to pdf_list
+        object = Tiles.objects.get(id=self.kwargs.get("pk"))
+        context['pdf_list'] = object.pdf_files.order_by("order")
+
         context.update({
-            'objekt': Tiles.objects.get(id=self.kwargs.get("pk")),
+            'objekt': object,
             'tile_nodes': Tiles.objects.all()
         })
         return context
